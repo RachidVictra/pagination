@@ -15,20 +15,19 @@
 				mysql_select_db('testDb');
 				
 				//
-					$nombreLignePage = 5;
-					$rqt = mysql_query('SELECT COUNT(*) AS nombreTotalLigne FROM countries');
-					$total = mysql_fetch_array($rqt);
-					$nombreTotalLigne = $total['nombreTotalLigne'];
-					$nombrePage = ceil($nombreTotalLigne/$nombreLignePage);
+				$nombreLignePage = 5;
+				$rqt = mysql_query('SELECT COUNT(*) AS nombreTotalLigne FROM countries');
+				$total = mysql_fetch_array($rqt);
+				$nombreTotalLigne = $total['nombreTotalLigne'];
+				$nombrePage = ceil($nombreTotalLigne/$nombreLignePage);
 				
 				//
-				
+				$page = 1;
 				if(isset($_GET['page']))
 					$page = $_GET['page']; // On récupère le numéro de la page indiqué dans l'adresse (index.php?page=4)
-				else
-					$page = 1;
 					
-				// On calcule le numéro du premier message qu'on prend pour le LIMIT de MySQL
+					
+				// On calcule le numéro du premier du liste qu'on prend pour le LIMIT de MySQL
 				$premierListe = ($page - 1) * $nombreLignePage;
 				
 				//$result = mysql_query('SELECT * FROM countries LIMIT 25, 5');
@@ -57,16 +56,7 @@
 				?>
 	        </table>
 			<?php
-				//Puis on fait une boucle pour écrire les liens vers chacune des pages
 				echo 'Page :';
-				for($i = 1; $i <= $nombrePage; $i++ )
-				{
-					if(isset($_GET['page'])){
-						$page = $_GET['page']; // On récupére le numéro de la page indiqué dans l'adresse (livreor.php?page=4)
-					}else{
-						$page = 1;
-					}	
-				}
 				
 				$nbAvant = 5;
 				$nbApres = 10;
